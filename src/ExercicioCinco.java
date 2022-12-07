@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class ExercicioCinco {
     
     public static void call(Scanner scanner) {
-        System.out.println("=== EXERCÍCIOS - LISTA 5 ===");
+        System.out.println("=== EXERCICIOS - LISTA 5 ===");
 
         System.out.println("+-------------------------------------------------------+");
         System.out.println("| 1 - Criar Pessoa                                      |");
@@ -65,26 +65,46 @@ public class ExercicioCinco {
     }
 
     public static void criarPessoa() {
-        
+        Pessoa pessoa = new Pessoa("João", 80, 1.80, "01/01/2000");
+        System.out.println(pessoa.imc());
+        System.out.println(pessoa.imcTexto());
+
     }
 
     public static void verificarIMC() {
-        
+        Pessoa pessoa = new Pessoa("João", 80, 1.80, "01/01/2000");
+        if(pessoa.imc() < 18.5) {
+            System.out.println("Abaixo do Peso");
+        } else if(pessoa.imc() >= 18.6 && pessoa.imc() <= 24.9) {
+            System.out.println("Peso Ideal");
+        } else if(pessoa.imc() >= 25.0 && pessoa.imc() <= 29.9) {
+            System.out.println("Levemente acima do peso");
+        } else if(pessoa.imc() >= 30.0 && pessoa.imc() <= 34.9) {
+            System.out.println("Obesidade Grau I");
+        } else if(pessoa.imc() >= 35.0 && pessoa.imc() <= 39.9) {
+            System.out.println("Obesidade Grau II");
+        } else if(pessoa.imc() > 40) {
+            System.out.println("Obesidade Grau III (mórbida)");
+        }
     }
 
     public static void contaCorrente() {
-        
+        ContaCorrente conta = new ContaCorrente("0004123-2", "5575", 1550.33, "Rodrigo");
     }
 
     public static void depositarValores() {
-        
+        ContaCorrente conta = new ContaCorrente("0004123-2", "5575", 1550.33, "Rodrigo");
+        conta.depositar(100);
+        System.out.println(conta.getSaldo());
     }
 
     public static void circunferencia() {
-        
+        Circunferencia circunferencia = new Circunferencia(10);
+        System.out.println(circunferencia.circunferencia());
     }
 
     public static void cifraCesar() {
-        
+        CifraDeCesar cifra = new CifraDeCesar("Ataque a roma", 3);
+        cifra.criptografia();
     }
 }

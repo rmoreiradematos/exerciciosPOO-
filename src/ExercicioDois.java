@@ -4,7 +4,7 @@ public class ExercicioDois {
 
 
     public static void call(Scanner scanner) {
-        System.out.println("=== EXERCÍCIOS - LISTA 2 ===");
+        System.out.println("=== EXERCICIOS - LISTA 2 ===");
 
         System.out.println("+-------------------------------------------------------+");
         System.out.println("| 1 - Calcule a Média                                   |");
@@ -88,42 +88,118 @@ public class ExercicioDois {
     }
 
     public static double calculaMedia(double notaUm, double notaDois, double notaTres) {
-        return 0;
+        return (notaUm + notaDois + notaTres) / 3;
     }
 
     public static String qualMes(int mes) {
-        return "";
+        if(mes == 1) {
+            return "Janeiro";
+        } else if(mes == 2) {
+            return "Fevereiro";
+        } else if(mes == 3) {
+            return "Março";
+        } else if(mes == 4) {
+            return "Abril";
+        } else if(mes == 5) {
+            return "Maio";
+        } else if(mes == 6) {
+            return "Junho";
+        } else if(mes == 7) {
+            return "Julho";
+        } else if(mes == 8) {
+            return "Agosto";
+        } else if(mes == 9) {
+            return "Setembro";
+        } else if(mes == 10) {
+            return "Outubro";
+        } else if(mes == 11) {
+            return "Novembro";
+        } else if(mes == 12) {
+            return "Dezembro";
+        } else {
+            return "Mês inválido";
+        }
+        
     }
 
     public static int[] tabuada(int numero) {
-        return new int[10];
+        int[] tabuada = new int[11];
+        int j = 1;
+        for(int i = 0; i < tabuada.length; i++) {
+            tabuada[i] = numero * j;
+            j++;
+        }
+        return tabuada;
     }
 
     public static char[] letraALetra(String palavra) {
-        return new char[1];
+        char[] letras = new char[palavra.length()];
+        for(int i = 0; i < palavra.length(); i++) {
+            letras[i] = palavra.charAt(i);
+            System.out.println(letras[i]);
+        }
+        return letras;
     }
 
     public static int numerosImpares() {
-        return 0;
+        int soma = 0;
+        for(int i = 0; i < 500; i++) {
+            if(i % 2 != 0 && i % 7 == 0 && i%500 == 0) {
+                soma += i;
+            }
+        }
+        return soma;
     }
 
     public static double calculaMedia(double[] notas) {
-        return 0;
+        double media = 0;
+        for(int i = 0; i < notas.length; i++) {
+            media += notas[i];
+        }
+        return media / notas.length;
     }
 
     public static int fatorial(int numero) {
-        return 0;
+        int fatorial = 1;
+        for(int i = 1; i <= numero; i++) {
+            fatorial *= i;
+        }
+        return fatorial;
     }
 
     public static double imc(double altura, double peso) {
-        return 0;
+        return peso / (altura * altura);
     }
 
     public static double operador(int valorUm, int valorDois, char operacao) {
-        return 0;
+        double resultado = 0;
+        switch(operacao) {
+            case '+':
+                resultado = valorUm + valorDois;
+                break;
+            case '-':
+                resultado = valorUm - valorDois;
+                break;
+            case '*':
+                resultado = valorUm * valorDois;
+                break;
+            case '/':
+                resultado = valorUm / valorDois;
+                break;
+            default:
+                System.out.println("Operação inválida");
+                break;
+        }
+        return resultado;
     }
 
     public static int[] notasNecessarias(int valor) {
-        return new int[6];
+        int[] notas = new int[6];
+        int[] valores = {200, 100, 50, 10, 5, 1};
+        for(int i = 0; i < notas.length; i++) {
+            notas[i] = valor / valores[i];
+            valor = valor % valores[i];
+        }
+        return notas;
     }
 }

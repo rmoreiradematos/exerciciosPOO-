@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ExercicioTres {
     public static void call(Scanner scanner) {
-        System.out.println("=== EXERCÍCIOS - LISTA 3 ===");
+        System.out.println("=== EXERCICIOS - LISTA 3 ===");
 
         System.out.println("+-------------------------------------------------------+");
         System.out.println("| 1 - Tabuada com Arquivo                               |");
@@ -17,10 +17,10 @@ public class ExercicioTres {
         System.out.println("| 3 - Operações básicas com a Main                      |");
         System.out.println("| 4 - Exponenciação com Precisão Arbitrária             |");
         System.out.println("| 5 - Nome aleatório de 5 pessoas                       |");
-        System.out.println("| 6 - Calcular Raio e Área                              |");
+        System.out.println("| 6 - Calcular Raio e Area                              |");
         System.out.println("| 7 - Avaliar se TXT tem JAVA                           |");
         System.out.println("| 8 - 10 primeiros dígitos                              |");
-        System.out.println("| 9 - Área com a Main                                   |");
+        System.out.println("| 9 - Area com a Main                                   |");
         System.out.println("| 10 - Receba nome de arquivo na Main com valores       |");
         System.out.println("| 11 - Ler e imprimir arquivo de texto                  |");
         System.out.println("+-------------------------------------------------------+");
@@ -86,46 +86,175 @@ public class ExercicioTres {
     }
 
     public static void tabuada(int numero) {
-        
+        int resultado = 0;
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("tabuada.txt"));
+            for (int i = 1; i <= 10; i++) {
+                resultado = numero * i;
+                writer.write(numero + " x " + i + " = " + resultado);
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     public static void lerArquivoTexto(String arquivo) {
-        
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(arquivo));
+            String linha = reader.readLine();
+            while (linha != null) {
+                System.out.println(linha);
+                linha = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     public static int[] operacoesBasicas(int numeroUm, int numeroDois) {
-        return new int[4];
+        int[] resultado = new int[4];
+        resultado[0] = numeroUm + numeroDois;
+        resultado[1] = numeroUm - numeroDois;
+        resultado[2] = numeroUm * numeroDois;
+        resultado[3] = numeroUm / numeroDois;
+        return resultado;
     }
 
     public static BigInteger bigIntExpo(BigInteger base, int pow) {
-        return base;
+        return base.pow(pow);
     }
 
     public static void aleatorizarPessoas(String pessoas[]) {
-        
+        Random random = new Random();
+        for (int i = 0; i < pessoas.length; i++) {
+            int index = random.nextInt(pessoas.length);
+            String temp = pessoas[index];
+            pessoas[index] = pessoas[i];
+            pessoas[i] = temp;
+        }
     }
 
     public static double[] areaECircunferencia(double raio) {
-        return new double[2];
+        double[] resultado = new double[2];
+        resultado[0] = 2 * Math.PI * raio;
+        resultado[1] = Math.PI * Math.pow(raio, 2);
+        return resultado;
     }
 
     public static boolean hasJava(String arquivo) {
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(arquivo));
+            String linha = reader.readLine();
+            while (linha != null) {
+                if (linha.contains("JAVA")) {
+                    return true;
+                }
+                linha = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
         return false;
     }
 
     public static void dezDigitos(String arquivo) {
-        
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(arquivo));
+            String linha = reader.readLine();
+            while (linha != null) {
+                System.out.println(linha.substring(0, 10));
+                linha = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     public static double calculaArea(double numeroUm, double numeroDois) {
-        return 0;
+        return  numeroUm * numeroDois;
     }
 
     public static double somaValoresArquivo(String arquivo) {
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(arquivo));
+            String linha = reader.readLine();
+            double soma = 0;
+            while (linha != null) {
+                soma += Double.parseDouble(linha);
+                linha = reader.readLine();
+            }
+            reader.close();
+            return soma;
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
         return 0;
     }
 
     public static void forcaComTxt() {
-        
+        String palavra = "";
+        String palavraOculta = "";
+        String letras = "";
+        int tentativas = 0;
+        int acertos = 0;
+        int erros = 0;
+        int maxErros = 6;
+        boolean acertou = false;
+        boolean enforcou = false;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("palavras.txt"));
+            String linha = reader.readLine();
+            while (linha != null) {
+                palavra = linha;
+                linha = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        for (int i = 0; i < palavra.length(); i++) {
+            palavraOculta += "*";
+        }
+        while (!acertou && !enforcou) {
+            System.out.println("Palavra: " + palavraOculta);
+            System.out.println("Letras já digitadas: " + letras);
+            System.out.println("Tentativas: " + tentativas);
+            System.out.println("Erros: " + erros);
+            System.out.println("Acertos: " + acertos);
+            System.out.println("Digite uma letra: ");
+            String letra = new Scanner(System.in).nextLine();
+            if (letras.contains(letra)) {
+                System.out.println("Você já digitou essa letra!");
+                continue;
+            } else {
+                letras += letra;
+            }
+            tentativas++;
+            boolean temLetra = false;
+            for (int i = 0; i < palavra.length(); i++) {
+                if (palavra.charAt(i) == letra.charAt(0)) {
+                    temLetra = true;
+                    palavraOculta = palavraOculta.substring(0, i) + letra + palavraOculta.substring(i + 1);
+                }
+            }
+            if (temLetra) {
+                acertos++;
+            } else {
+                erros++;
+            }
+            acertou = palavraOculta.equals(palavra);
+            enforcou = erros == maxErros;
+        }
+        if (acertou) {
+            System.out.println("Parabéns, você acertou!");
+        } else {
+            System.out.println("Você foi enforcado!");
+        }
+        System.out.println("Fim de jogo!");
     }
 }

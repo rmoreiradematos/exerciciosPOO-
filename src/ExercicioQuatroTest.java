@@ -40,7 +40,7 @@ public class ExercicioQuatroTest {
     @Test
     public void dezValoresIntTest() {
         ExercicioQuatro.dezValoresInt(new int[]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
-        assertEquals(systemOutContent.toString(),"Par\nÍmpar\nPar\nÍmpar\nPar\nÍmpar\nPar\nÍmpar\nPar\nÍmpar\n");
+        assertEquals(systemOutContent.toString(),"Par\nImpar\nPar\nImpar\nPar\nImpar\nPar\nImpar\nPar\nImpar\n");
     }
 
     @Test

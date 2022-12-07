@@ -1,13 +1,16 @@
 public class Circunferencia {
+    private double raio;
     public Circunferencia(double raio) {
-
+        this.raio = raio;
     }
 
     public double area() {
-        return 0;
+        double area = Math.PI * Math.pow(this.raio, 2);
+        return area;
     }
 
     public double circunferencia() {
-        return 0;
+        double circunferencia = 2 * Math.PI * this.raio;
+        return circunferencia;
     }
 }
